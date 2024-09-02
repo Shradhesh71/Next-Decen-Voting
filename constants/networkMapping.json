@@ -1,0 +1,2456 @@
+{
+  "interface": {
+    "fragments": [
+      {
+        "name": null,
+        "type": "constructor",
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "type": "error",
+        "name": "AlreadyVoted",
+        "inputs": [
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "_isFragment": true
+      },
+      {
+        "type": "error",
+        "name": "NotOwner",
+        "inputs": [],
+        "_isFragment": true
+      },
+      {
+        "type": "error",
+        "name": "NotVerified",
+        "inputs": [
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "_isFragment": true
+      },
+      {
+        "type": "error",
+        "name": "VotingClosed",
+        "inputs": [],
+        "_isFragment": true
+      },
+      {
+        "type": "error",
+        "name": "VotingNotStart",
+        "inputs": [],
+        "_isFragment": true
+      },
+      {
+        "name": "ElectionDetailsSet",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "_adminName",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminTitle",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_electionTitle",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_organizationTitle",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "NewVoterRegistered",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_phone",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_aadhar",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_email",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "newCandidateAdded",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_slogan",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_partyName",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "name": "voted",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "addCandidate",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_slogan",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_partyName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "candidateDetails",
+        "constant": true,
+        "inputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "slogan",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "partyName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "voteCount",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "electionDetails",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "adminName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "adminEmail",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "adminTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "electionTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "organizationTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "endDate",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "endElection",
+        "constant": false,
+        "inputs": [],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getAdmin",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getElectionDetails",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "_adminName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminEmail",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_electionTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_organizationTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getEnd",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getStart",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getTotalCandidate",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getTotalVoter",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "getVoterDetails",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "_voter",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "tuple",
+            "indexed": null,
+            "components": [
+              {
+                "name": "voterAddress",
+                "type": "address",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "address",
+                "_isParamType": true
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "phone",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "aadhar",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "email",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "isVerified",
+                "type": "bool",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "bool",
+                "_isParamType": true
+              },
+              {
+                "name": "hasVoted",
+                "type": "bool",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "bool",
+                "_isParamType": true
+              },
+              {
+                "name": "isRegistered",
+                "type": "bool",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "bool",
+                "_isParamType": true
+              }
+            ],
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "tuple",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "isVotingOpen",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "registerAsVoter",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_phone",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_email",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "s_candidateCount",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "s_voterCount",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "setElectionDetails",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_adminName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminEmail",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_electionTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_organizationTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "setVotingDates",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_startDate",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "_endDate",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "startDate",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "tallyVotes",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "winningCandidateId",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "winningVoteCount",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "verifyVoter",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_verifedStatus",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          },
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "vote",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "voterDetails",
+        "constant": true,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "isVerified",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          },
+          {
+            "name": "hasVoted",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          },
+          {
+            "name": "isRegistered",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      {
+        "type": "function",
+        "name": "voters",
+        "constant": true,
+        "inputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      }
+    ],
+    "_abiCoder": { "coerceFunc": null },
+    "functions": {
+      "addCandidate(string,string,string,string)": {
+        "type": "function",
+        "name": "addCandidate",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_slogan",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_partyName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "candidateDetails(uint256)": {
+        "type": "function",
+        "name": "candidateDetails",
+        "constant": true,
+        "inputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "slogan",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "partyName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "voteCount",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "electionDetails()": {
+        "type": "function",
+        "name": "electionDetails",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "adminName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "adminEmail",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "adminTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "electionTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "organizationTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "endDate()": {
+        "type": "function",
+        "name": "endDate",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "endElection()": {
+        "type": "function",
+        "name": "endElection",
+        "constant": false,
+        "inputs": [],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getAdmin()": {
+        "type": "function",
+        "name": "getAdmin",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getElectionDetails()": {
+        "type": "function",
+        "name": "getElectionDetails",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "_adminName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminEmail",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_electionTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_organizationTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getEnd()": {
+        "type": "function",
+        "name": "getEnd",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getStart()": {
+        "type": "function",
+        "name": "getStart",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getTotalCandidate()": {
+        "type": "function",
+        "name": "getTotalCandidate",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getTotalVoter()": {
+        "type": "function",
+        "name": "getTotalVoter",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "getVoterDetails(address)": {
+        "type": "function",
+        "name": "getVoterDetails",
+        "constant": true,
+        "inputs": [
+          {
+            "name": "_voter",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "tuple",
+            "indexed": null,
+            "components": [
+              {
+                "name": "voterAddress",
+                "type": "address",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "address",
+                "_isParamType": true
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "phone",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "aadhar",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "email",
+                "type": "string",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "string",
+                "_isParamType": true
+              },
+              {
+                "name": "isVerified",
+                "type": "bool",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "bool",
+                "_isParamType": true
+              },
+              {
+                "name": "hasVoted",
+                "type": "bool",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "bool",
+                "_isParamType": true
+              },
+              {
+                "name": "isRegistered",
+                "type": "bool",
+                "indexed": null,
+                "components": null,
+                "arrayLength": null,
+                "arrayChildren": null,
+                "baseType": "bool",
+                "_isParamType": true
+              }
+            ],
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "tuple",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "isVotingOpen()": {
+        "type": "function",
+        "name": "isVotingOpen",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "registerAsVoter(string,string,string,string)": {
+        "type": "function",
+        "name": "registerAsVoter",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_phone",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_email",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "s_candidateCount()": {
+        "type": "function",
+        "name": "s_candidateCount",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "s_voterCount()": {
+        "type": "function",
+        "name": "s_voterCount",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "setElectionDetails(string,string,string,string,string)": {
+        "type": "function",
+        "name": "setElectionDetails",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_adminName",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminEmail",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_electionTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_organizationTitle",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "setVotingDates(uint256,uint256)": {
+        "type": "function",
+        "name": "setVotingDates",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_startDate",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "_endDate",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "startDate()": {
+        "type": "function",
+        "name": "startDate",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "tallyVotes()": {
+        "type": "function",
+        "name": "tallyVotes",
+        "constant": true,
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "winningCandidateId",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "winningVoteCount",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "verifyVoter(bool,address)": {
+        "type": "function",
+        "name": "verifyVoter",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_verifedStatus",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          },
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "vote(uint256)": {
+        "type": "function",
+        "name": "vote",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "voterDetails(address)": {
+        "type": "function",
+        "name": "voterDetails",
+        "constant": true,
+        "inputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "aadhar",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "isVerified",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          },
+          {
+            "name": "hasVoted",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          },
+          {
+            "name": "isRegistered",
+            "type": "bool",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "bool",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      },
+      "voters(uint256)": {
+        "type": "function",
+        "name": "voters",
+        "constant": true,
+        "inputs": [
+          {
+            "name": null,
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [
+          {
+            "name": null,
+            "type": "address",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "gas": { "type": "BigNumber", "hex": "0x01ba8140" },
+        "_isFragment": true
+      }
+    },
+    "errors": {
+      "AlreadyVoted(string)": {
+        "type": "error",
+        "name": "AlreadyVoted",
+        "inputs": [
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "_isFragment": true
+      },
+      "NotOwner()": {
+        "type": "error",
+        "name": "NotOwner",
+        "inputs": [],
+        "_isFragment": true
+      },
+      "NotVerified(string)": {
+        "type": "error",
+        "name": "NotVerified",
+        "inputs": [
+          {
+            "name": "name",
+            "type": "string",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "_isFragment": true
+      },
+      "VotingClosed()": {
+        "type": "error",
+        "name": "VotingClosed",
+        "inputs": [],
+        "_isFragment": true
+      },
+      "VotingNotStart()": {
+        "type": "error",
+        "name": "VotingNotStart",
+        "inputs": [],
+        "_isFragment": true
+      }
+    },
+    "events": {
+      "ElectionDetailsSet(string,string,string,string)": {
+        "name": "ElectionDetailsSet",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "_adminName",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_adminTitle",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_electionTitle",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_organizationTitle",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "NewVoterRegistered(address,string,string,string,string)": {
+        "name": "NewVoterRegistered",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          },
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_phone",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_aadhar",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_email",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "newCandidateAdded(uint256,string,string,string)": {
+        "name": "newCandidateAdded",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "_name",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_slogan",
+            "type": "string",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          },
+          {
+            "name": "_partyName",
+            "type": "string",
+            "indexed": false,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "string",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      },
+      "voted(uint256,address)": {
+        "name": "voted",
+        "anonymous": false,
+        "inputs": [
+          {
+            "name": "candidateId",
+            "type": "uint256",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          },
+          {
+            "name": "voterAddress",
+            "type": "address",
+            "indexed": true,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "address",
+            "_isParamType": true
+          }
+        ],
+        "type": "event",
+        "_isFragment": true
+      }
+    },
+    "structs": {},
+    "deploy": {
+      "name": null,
+      "type": "constructor",
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "gas": null,
+      "_isFragment": true
+    },
+    "_isInterface": true
+  },
+  "provider": "<WrappedHardhatProvider>",
+  "signer": "<SignerWithAddress 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266>",
+  "callStatic": {},
+  "estimateGas": {},
+  "functions": {},
+  "populateTransaction": {},
+  "filters": {},
+  "_runningEvents": {},
+  "_wrappedEmits": {},
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "resolvedAddress": {}
+}
